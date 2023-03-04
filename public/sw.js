@@ -9,7 +9,26 @@ self.addEventListener("install", function (event) {
     event.waitUntil(preLoad());
 });
 
-const filesToCache = ["/", "/offline.html", "wallet.png"];
+const filesToCache = [
+    "/",
+    "/offline.html",
+    "logo.png",
+    "assets/css/demo.css",
+    "assets/img/illustrations/page-misc-error-light.png",
+    "assets/img/favicon/favicon.ico",
+    "assets/vendor/fonts/boxicons.css",
+    "assets/vendor/css/core.css",
+    "assets/vendor/css/theme-default.css",
+    "assets/vendor/css/pages/page-misc.css",
+    "assets/vendor/js/helpers.js",
+    "assets/js/config.js",
+    "assets/vendor/libs/jquery/jquery.js",
+    "assets/vendor/libs/popper/popper.js",
+    "assets/vendor/js/bootstrap.js",
+    "assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js",
+    "assets/vendor/js/menu.js",
+    "assets/js/main.js",
+];
 
 const checkResponse = function (request) {
     return new Promise(function (fulfill, reject) {
