@@ -1,0 +1,17 @@
+{
+    "name": "Sistem Informasi Pelayanan Surat Desa",
+    "short_name": "SIMPELAE",
+    "start_url": "/login",
+    "background_color": "#696cff",
+    "description": "Sistem Informasi Pelayanan Surat Keterangan Desa",
+    "display": "fullscreen",
+    "theme_color": "#696cff",
+    "icons": [
+        {
+            "src": "logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
