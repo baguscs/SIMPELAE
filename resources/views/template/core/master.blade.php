@@ -269,7 +269,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="javascript:void(0);">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
@@ -293,7 +293,7 @@
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{ route('changePassword') }}">
                         <i class="bx bx-cog me-2"></i>
                         <span class="align-middle">Ganti Password</span>
                       </a>

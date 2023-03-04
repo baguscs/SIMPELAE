@@ -131,6 +131,3 @@
 @push('titlePage')
     {{ $titlePage }}
 @endpush
-@push('js')
-    <script src="{{ asset('assets/js/ui-toasts.js') }}"></script>
-@endpush
