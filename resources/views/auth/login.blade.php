@@ -126,7 +126,14 @@
                 <p class="mb-4">Silahkan login ke akun anda</p>
               </div>
 
-              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+              @error('email')
+                  <div class="alert alert-danger text-center" role="alert">
+                    Email dan Password tidak dikenali
+                  </div>
+              @enderror
+
+              <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
+                @csrf
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input
@@ -136,6 +143,7 @@
                     name="email"
                     placeholder="Masukkan email anda"
                     autofocus
+                    required
                   />
                 </div>
                 <div class="mb-3 form-password-toggle">
@@ -153,6 +161,7 @@
                       name="password"
                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                       aria-describedby="password"
+                      required
                     />
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
