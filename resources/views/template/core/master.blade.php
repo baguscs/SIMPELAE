@@ -277,8 +277,8 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
+                            <span class="fw-semibold d-block">{{ Auth::user()->warga->nama_warga }}</span>
+                            <small class="text-muted">{{ Auth::user()->jabatan->jabatan }}</small>
                           </div>
                         </div>
                       </a>
@@ -287,15 +287,15 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{ route('profile') }}">
                         <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
+                        <span class="align-middle">Profil Akun</span>
                       </a>
                     </li>
                     <li>
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
+                        <span class="align-middle">Ganti Password</span>
                       </a>
                     </li>
                     <li>

@@ -58,4 +58,24 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Get the warga that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function warga()
+    {
+        return $this->belongsTo(Warga::class, 'wargas_id');
+    }
+
+    /**
+     * Get the jabatan that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'jabatans_id');
+    }
 }
