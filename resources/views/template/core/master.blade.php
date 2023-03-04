@@ -14,7 +14,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard - SIMPELAE</title>
+    <title>@stack('titlePage') - SIMPELAE</title>
 
     <meta name="description" content="" />
 
@@ -119,7 +119,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">SIMPELAE</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -131,8 +131,8 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
-              <a href="index.html" class="menu-link">
+            <li class="menu-item @stack('dashboardActive')">
+              <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -243,7 +243,7 @@
               
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
-                  <h4 class="fw-bold mt-3 ml-3">Dashboard</h4>
+                  <h4 class="fw-bold mt-3 ml-3">@stack('titlePage')</h4>
                 </div>
               </div>
 
