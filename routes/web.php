@@ -32,4 +32,5 @@ Route::middleware([
 
     // profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/updateProfile', [ProfileController::class, 'update'])->name('updateProfile');
 });

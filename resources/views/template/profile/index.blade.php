@@ -11,9 +11,17 @@
         </ol>
     </nav>
 
+    @if (session()->has('message'))
+        <div class="alert alert-primary alert-dismissible" role="alert">
+            <i class='bx bx-check bx-sm bx-flashing'></i> {{ session()->get('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="card mb-4">
         <div class="card-body">
-            <form id="formAccountSettings" method="POST" onsubmit="return false">
+            <form id="formAccountSettings" method="POST" action="{{ route('updateProfile') }}">
+            @csrf
             <div class="row">
                 <div class="mb-3 col-md-6">
                     <label for="name" class="form-label">Nama Warga</label>
@@ -122,4 +130,7 @@
 @endsection
 @push('titlePage')
     {{ $titlePage }}
+@endpush
+@push('js')
+    <script src="{{ asset('assets/js/ui-toasts.js') }}"></script>
 @endpush
