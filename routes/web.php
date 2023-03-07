@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WargaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +36,7 @@ Route::middleware([
     Route::post('/updateProfile', [ProfileController::class, 'update'])->name('updateProfile');
     Route::get('/changePassword', [ProfileController::class, 'password'])->name('changePassword');
     Route::post('/updatePassword', [ProfileController::class, 'updatePassword'])->name('updatePassword');
+
+    //warga
+    Route::resource('/warga', WargaController::class);
 });

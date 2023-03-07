@@ -94,9 +94,6 @@
 @push('titlePage')
     {{ $titlePage }}
 @endpush
-@push('dashboardActive')
-    {{ $linkActived }}
-@endpush
 @push('js')
     <script>
         "use strict";

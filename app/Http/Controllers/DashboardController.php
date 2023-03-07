@@ -12,7 +12,6 @@ class DashboardController extends Controller
     public function index()
     {
         $titlePage = "Dashboard";
-        $linkActived = "active";
         $allSubmission  = Pengajuan::all()->count();
         $bornSubmission = Pengajuan::where('jenis_surats_id', 1)->get()->count();
         $dieSubmission = Pengajuan::where('jenis_surats_id', 2)->get()->count();
