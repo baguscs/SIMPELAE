@@ -20,7 +20,7 @@ class WargaSeeder extends Seeder
             'nama_warga' => 'Dumy Name',
             'tempat_lahir' => 'Surabaya',
             'tanggal_lahir' => '2022-01-11',
-            'jenis_kelamin' => 'Laki-Laki',
+            'jenis_kelamin' => 'Laki_Laki',
             'agama' => 'Islam',
             'alamat' => 'Jl. Surabaya',
             'pekerjaan' => 'Programmmer',

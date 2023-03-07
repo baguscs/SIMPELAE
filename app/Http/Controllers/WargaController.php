@@ -16,7 +16,7 @@ class WargaController extends Controller
         $titlePage = "Data Warga";
         $data = Warga::all();
         $region = Wilayah_rt::all();
-        return view('template.warga.index', compact('titlePage', 'linkActived', 'subLink', 'data', 'region'));
+        return view('template.warga.index', compact('titlePage', 'data', 'region'));
     }
 
     /**
@@ -24,7 +24,9 @@ class WargaController extends Controller
      */
     public function create()
     {
-        //
+        $titlePage = "Tambah Warga";
+        $region = Wilayah_rt::all();
+        return view('template.warga.add', compact('titlePage', 'region'));
     }
 
     /**
@@ -32,7 +34,24 @@ class WargaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'wilayah_rts_id' => 'required',
+            'nik' => 'required|min:16|max:16|unique:wargas',
+            'no_kk' => 'required|min:16|max:16|unique:wargas',
+            'nama_warga' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'agama' => 'required',
+            'alamat' => 'required',
+            'pekerjaan' => 'required',
+            'kewarganegaraan' => 'required',
+            'no_telp' => 'required',
+        ]);
+
+        Warga::create($request->all());
+
+        return redirect()->route('warga.index')->with("message", "Berhasil Menambah Data Warga ". $request->nama_warga);
     }
 
     /**
@@ -84,7 +103,7 @@ class WargaController extends Controller
         }
         
         $warga->update($request->all());
-        return redirect()->back()->with("message", "Berhasil Mengupdate Data ". $warga->nama_warga);
+        return redirect()->back()->with("message", "Berhasil Mengupdate Data Warga". $warga->nama_warga);
     }
 
     /**
@@ -92,6 +111,9 @@ class WargaController extends Controller
      */
     public function destroy(Warga $warga)
     {
-        //
+        $nama_warga = $warga->nama_warga;
+
+        $warga->delete();
+        return redirect()->back()->with("message", "Berhasil Menghapus Data Warga ". $nama_warga);
     }
 }

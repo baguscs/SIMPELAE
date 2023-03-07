@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('pekerjaan');
             $table->string('kewarganegaraan');
             $table->string('no_telp');
-            $table->enum('status_akun', ['1', '0']);
+            $table->enum('status_akun', ['1', '0'])->default('0');
             $table->timestamps();
         });
     }

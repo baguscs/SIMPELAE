@@ -78,14 +78,14 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">masyarakat</span>
         </li>
-        <li class="menu-item {{ request()->routeIs('warga.index') || request()->routeIs('warga.add') ? 'active open' : '' }}">
+        <li class="menu-item {{ request()->routeIs('warga.index') || request()->routeIs('warga.create') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-group"></i>
                 <div data-i18n="Account Settings">Warga</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
+                <li class="menu-item {{ request()->routeIs('warga.create') ? 'active' : '' }}">
+                    <a href="{{ route('warga.create') }}" class="menu-link">
                         <div data-i18n="Account">Tambah Warga</div>
                     </a>
                 </li>
