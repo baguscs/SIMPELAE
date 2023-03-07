@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\AparatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,7 @@ Route::middleware([
 
     //warga
     Route::resource('/warga', WargaController::class);
+
+    //aparat
+    Route::resource('/aparat', AparatController::class);
 });

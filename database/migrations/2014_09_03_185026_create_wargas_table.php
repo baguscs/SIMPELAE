@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('kewarganegaraan');
             $table->string('no_telp');
             $table->enum('status_akun', ['1', '0'])->default('0');
+            $table->string('aparat')->default('0');
             $table->timestamps();
         });
     }

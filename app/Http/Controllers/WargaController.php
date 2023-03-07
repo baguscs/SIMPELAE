@@ -103,7 +103,7 @@ class WargaController extends Controller
         }
         
         $warga->update($request->all());
-        return redirect()->back()->with("message", "Berhasil Mengupdate Data Warga". $warga->nama_warga);
+        return redirect()->back()->with("message", "Berhasil Mengupdate Data Warga ". $warga->nama_warga);
     }
 
     /**

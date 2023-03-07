@@ -25,6 +25,7 @@ class Warga extends Model
         'kewarganegaraan',
         'no_telp',
         'status_akun',
+        'aparat',
     ];
 
     protected $guarded = ['id'];
@@ -47,5 +48,15 @@ class Warga extends Model
     public function wilayah_rt()
     {
         return $this->belongsTo(Wilayah_rt::class, 'wilayah_rts_id');
+    }
+
+    /**
+     * Get the aparat associated with the Warga
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function aparat()
+    {
+        return $this->hasOne(Aparat::class);
     }
 }

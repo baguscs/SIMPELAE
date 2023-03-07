@@ -22,4 +22,14 @@ class Jabatan extends Model
     {
         return $this->hasOne(User::class,);
     }
+
+    /**
+     * Get the aparat associated with the Jabatan
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function aparat()
+    {
+        return $this->hasOne(Aparat::class);
+    }
 }

@@ -114,19 +114,19 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ request()->routeIs('aparat.index') || request()->routeIs('aparat.create') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-shield-quarter"></i>
                 <div data-i18n="Misc">Aparat</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="pages-misc-error.html" class="menu-link">
+                <li class="menu-item {{ request()->routeIs('aparat.create') ? 'active' : '' }}">
+                    <a href="{{ route('aparat.create') }}" class="menu-link">
                         <div data-i18n="Error">Tambah Aparat</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="pages-misc-under-maintenance.html" class="menu-link">
+                <li class="menu-item {{ request()->routeIs('aparat.index') ? 'active' : '' }}">
+                    <a href="{{ route('aparat.index') }}" class="menu-link">
                         <div data-i18n="Under Maintenance">Lihat Aparat</div>
                     </a>
                 </li>
