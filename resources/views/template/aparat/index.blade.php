@@ -61,7 +61,7 @@
                                 <div class="modal-dialog modal-md" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel2">Hapus Data {{ $item->nama_warga }}</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel2">Hapus Data Aparat {{ $item->warga->nama_warga }}</h5>
                                             <button
                                                 type="button"
                                                 class="btn-close"
@@ -72,11 +72,11 @@
                                         <div class="modal-body">
                                             <div class="row">
                                                 <p>
-                                                    Apakah anda yakin ingin menghapus data warga {{ $item->nama_warga }} ?
+                                                    Apakah anda yakin ingin menghapus data aparat {{ $item->warga->nama_warga }} ?
                                                 </p>
                                             </div>
                                         </div>
-                                        <form action="{{ route('warga.destroy', $item->id) }}" method="POST">
+                                        <form action="{{ route('aparat.destroy', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <div class="modal-footer">

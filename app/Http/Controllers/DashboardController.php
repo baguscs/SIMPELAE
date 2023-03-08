@@ -17,7 +17,7 @@ class DashboardController extends Controller
         $dieSubmission = Pengajuan::where('jenis_surats_id', 2)->get()->count();
         $ksmSubmission = Pengajuan::where('jenis_surats_id', 3)->get()->count();
         return view('template.dashboard.index', 
-        compact('titlePage', 'linkActived', 'allSubmission', 'bornSubmission', 'dieSubmission', 'ksmSubmission'));
+        compact('titlePage', 'allSubmission', 'bornSubmission', 'dieSubmission', 'ksmSubmission'));
     }
 
     public function logout(Request $request): RedirectResponse

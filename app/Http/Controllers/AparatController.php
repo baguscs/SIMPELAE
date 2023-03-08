@@ -84,16 +84,50 @@ class AparatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Aparat $aparat)
     {
-        //
+        $request->validate([
+            'jabatans_id' => 'required',
+        ]);
+
+        if ($request->wargas_id != $aparat->wargas_id) {
+            $request->validate([
+                'wargas_id' => 'required|unique:aparats',
+            ]);
+        }
+        elseif ($request->wilayah_rts_id != $aparat->wilayah_rts_id) {
+            $request->validate([
+                'wilayah_rts_id' => 'unique:aparats',
+            ]);
+        }
+        elseif ($request->jabatans_id == 1) {
+            $checkJabatan = Aparat::where('jabatans_id', 1)->count();
+            if ($checkJabatan > 0) {
+                return redirect()->back()->with("error", "Jabatan sudah terisi");
+            }
+        }
+
+        $getNameWarga = Warga::find($request->wargas_id);
+
+        $aparat->update($request->all());
+
+        return redirect()->route('aparat.index')->with("message", "Berhasil Mengupdate Aparat ". $getNameWarga->nama_warga);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Aparat $aparat)
     {
-        //
+        // dd($aparat->wargas_id);
+        $updateStatusAparat = Warga::find($aparat->wargas_id);
+
+        $updateStatusAparat->aparat = 0;
+        $updateStatusAparat->save();
+
+        $getNameWarga = $updateStatusAparat->nama_warga;
+
+        $aparat->delete();
+        return redirect()->back()->with("message", "Berhasil Menghapus Aparat ". $getNameWarga);
     }
 }

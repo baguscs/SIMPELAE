@@ -31,8 +31,9 @@
 
     <div class="card mb-4">
         <div class="card-body">
-            <form action="{{ route('aparat.store') }}" method="POST">
+            <form action="{{ route('aparat.update', $aparat->id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="col mb-2">
                         <label for="warga" class="form-label">Warga</label>
@@ -59,7 +60,7 @@
                         <select class="form-select form-wilayah" id="wilayah" name="wilayah_rts_id" aria-label="Default select example">
                             <option selected disabled>Silahkan Pilih Wilayah RT</option>
                             @foreach ($region as $item)
-                                <option value="{{ $item->id }}" @if (old('wilayah_rts_id') == $item->id) selected @endif>{{ $item->wilayah }}</option>
+                                <option value="{{ $item->id }}" @if ($aparat->wilayah_rts_id == $item->id) selected @endif>{{ $item->wilayah }}</option>
                             @endforeach
                         </select>
                     </div>
