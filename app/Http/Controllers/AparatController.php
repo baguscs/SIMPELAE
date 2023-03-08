@@ -72,9 +72,13 @@ class AparatController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Aparat $aparat)
     {
-        //
+        $titlePage = "Edit Aparat";
+        $warga = Warga::all();
+        $jabatan = Jabatan::where('id', '!=', 3)->get();
+        $region = Wilayah_rt::all();
+        return view('template.aparat.edit', compact('titlePage', 'warga', 'jabatan', 'region', 'aparat'));
     }
 
     /**

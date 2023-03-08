@@ -114,7 +114,7 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item {{ request()->routeIs('aparat.index') || request()->routeIs('aparat.create') ? 'active open' : '' }}">
+        <li class="menu-item {{ request()->routeIs('aparat.index') || request()->routeIs('aparat.create') || request()->routeIs('aparat.edit') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-shield-quarter"></i>
                 <div data-i18n="Misc">Aparat</div>

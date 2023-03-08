@@ -31,7 +31,7 @@
 
     <div class="card mb-4">
         <div class="card-body">
-            <form action="{{ route('aparat.store') }}" method="POST" class="browser-default-validation">
+            <form action="{{ route('aparat.store') }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col mb-2">
@@ -39,7 +39,7 @@
                         <select class="form-select data-warga" id="warga" name="wargas_id" aria-label="Default select example" required>
                             <option selected disabled>Silahkan Pilih Nama Warga</option>
                             @foreach ($warga as $item)
-                                <option value="{{ $item->id }}" @if (old('wargas_id') == $item->id) selected @endif>{{ $item->nama_warga }}</option>
+                                <option value="{{ $item->id }}" @if ($aparat->wargas_id == $item->id) selected @endif>{{ $item->nama_warga }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -50,11 +50,11 @@
                         <select class="form-select" id="jabatan" name="jabatans_id" aria-label="Default select example" required>
                             <option selected disabled>Silahkan Pilih Jabatan</option>
                             @foreach ($jabatan as $item)
-                                <option value="{{ $item->id }}" @if (old('jabatans_id') == $item->id) selected @endif>{{ $item->jabatan }}</option>
+                                <option value="{{ $item->id }}" @if ($aparat->jabatans_id == $item->id) selected @endif>{{ $item->jabatan }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="col mb-2 field-wilayah" hidden>
+                    <div class="col mb-2 field-wilayah">
                         <label for="wilayah" class="form-label">Wilayah</label>
                         <select class="form-select form-wilayah" id="wilayah" name="wilayah_rts_id" aria-label="Default select example">
                             <option selected disabled>Silahkan Pilih Wilayah RT</option>
@@ -85,6 +85,10 @@
     <script>
         $(document).ready(function() {
             $('.data-warga').select2();
+            
+            if ({{ $aparat->jabatans_id }} == 1) {
+                $('.field-wilayah').attr('hidden', true);
+            }
 
             $('#jabatan').on("change", function () {
                 if ($(this).val() == 2) {
