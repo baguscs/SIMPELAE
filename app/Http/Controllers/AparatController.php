@@ -6,6 +6,7 @@ use App\Models\Aparat;
 use App\Models\Warga;
 use App\Models\Jabatan;
 use App\Models\Wilayah_rt;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AparatController extends Controller
@@ -50,13 +51,25 @@ class AparatController extends Controller
             }
         }
 
-        Aparat::create($request->all());
+        $execute = Aparat::create($request->all());
+        // $newAparat = new Aparat;
+
+        // $newAparat->wilayah_rts_id = $request->wilayah_rts_id;
+        // $newAparat->jabatans_id = $request->jabatans_id;
+        // $newAparat->wargas_id = $request->wargas_id;
+
+        // $newAparat->save();
 
         $updateWarga = Warga::find($request->wargas_id);
 
         $updateWarga->aparat = 1;
-
         $updateWarga->save();
+
+        $updateAkun = User::where('wargas_id', $request->wargas_id)->firstOrFail();
+
+        $updateAkun->aparats_id = $execute->id;
+        $updateAkun->save();
+
 
         return redirect()->route('aparat.index')->with("message", "Berhasil Menambah Aparat");
     }

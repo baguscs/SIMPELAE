@@ -16,7 +16,7 @@ class Aparat extends Model
         'jabatans_id',
         'wargas_id',
     ];
-    protected $guarded = "id";
+    // protected $guarded = "id";
 
     /**
      * Get the warga that owns the Aparat

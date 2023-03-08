@@ -96,19 +96,19 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ request()->routeIs('akun.index') || request()->routeIs('akun.create') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-user"></i>
                 <div data-i18n="Authentications">Akun Warga</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                <li class="menu-item {{ request()->routeIs('akun.create') ? 'active' : '' }}">
+                    <a href="{{ route('akun.create') }}" class="menu-link">
                         <div data-i18n="Basic">Tambah Akun</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="auth-register-basic.html" class="menu-link" target="_blank">
+                <li class="menu-item {{ request()->routeIs('akun.index') ? 'active' : '' }}">
+                    <a href="{{ route('akun.index') }}" class="menu-link">
                         <div data-i18n="Basic">Lihat Akun</div>
                     </a>
                 </li>

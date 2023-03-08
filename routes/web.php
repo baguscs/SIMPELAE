@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\AparatController;
+use App\Http\Controllers\AkunController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,7 @@ Route::middleware([
 
     //aparat
     Route::resource('/aparat', AparatController::class);
+
+    //akun
+    Route::resource('/akun', AkunController::class);
 });
