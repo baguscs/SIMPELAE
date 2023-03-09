@@ -23,9 +23,16 @@
         </div>
     @endif
 
+    @if (session()->has('error'))
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <i class='bx bx-error bx-sm bx-flashing'></i> {{ session()->get('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="card mb-4">
         <div class="card-body">
-            <form action="{{ route('warga.store') }}" method="POST">
+            <form action="{{ route('akun.store') }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col mb-2">

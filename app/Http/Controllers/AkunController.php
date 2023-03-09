@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Warga;
 use App\Models\Wilayah_rt;
 use App\Models\User;
+use App\Models\Jabatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class AkunController extends Controller
 {
@@ -17,7 +20,8 @@ class AkunController extends Controller
         $titlePage = "Data Akun Warga";
         $data = User::all();
         $region = Wilayah_rt::all();
-        return view('template.akun.index', compact('titlePage', 'data', 'region'));
+        $jabatan = Jabatan::all();
+        return view('template.akun.index', compact('titlePage', 'data', 'region', 'jabatan'));
     }
 
     /**
@@ -27,7 +31,8 @@ class AkunController extends Controller
     {
         $titlePage = "Tambah Akun Warga";
         $warga = Warga::where('status_akun', '0')->get();
-        return view('template.akun.add', compact('titlePage', 'warga'));
+        $jabatan = Jabatan::all();
+        return view('template.akun.add', compact('titlePage', 'warga', 'jabatan'));
     }
 
     /**
@@ -35,7 +40,30 @@ class AkunController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'wargas_id' => 'required',
+            'email' => 'required|unique:users|email:rfc,dns',
+        ]);
+
+        $passwordAccount = Str::random(5);
+
+        $newAccount = new User;
+
+        $newAccount->wargas_id = $request->wargas_id;
+        $newAccount->jabatans_id = 3;
+        $newAccount->email = $request->email;
+        $newAccount->password = Hash::make($passwordAccount);
+
+        $newAccount->save();
+
+        $updateWarga = Warga::find($request->wargas_id);
+
+        $updateWarga->status_akun = "1";
+        $updateWarga->save();
+
+
+        return redirect()->route('akun.index')->with("message", "Berhasil Menambah Akun User");
+        
     }
 
     /**
@@ -57,16 +85,41 @@ class AkunController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'jabatans_id' => 'required',
+        ]);
+
+        if ($request->jabatans_id == 1) {
+            $checkAuthor = User::where('jabatans_id', 1)->count();
+            if ($checkAuthor > 0) {
+                return redirect()->back()->with("error", "Jabatan Sudah terisi");
+            }
+        }
+
+        $updateAuthor = User::find($request->id);
+
+        $updateAuthor->jabatans_id = $request->jabatans_id;
+        $updateAuthor->save();
+
+        return redirect()->back()->with("message", "Berhasil Mengupdate Akun ". $request->nama_warga);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $getData = User::find($id);
+
+        $updateStatusAcc = Warga::where('id', $getData->wargas_id)->firstOrFail();
+        $updateStatusAcc->status_akun = "0";
+        $updateStatusAcc->save();
+
+        $getNameWarga = $updateStatusAcc->nama_warga;
+
+        $getData->delete();
+        return redirect()->back()->with("message", "Berhasil Menghapus Akun ". $getNameWarga);
     }
 }

@@ -18,11 +18,9 @@
         </div>
     @endif
 
-    @if ($errors->any())
+    @if (session()->has('error'))
         <div class="alert alert-danger alert-dismissible" role="alert">
-            <i class='bx bx-error bx-sm bx-flashing'></i> @foreach ($errors->all() as $error)
-                {{ $error }}
-            @endforeach
+            <i class='bx bx-error bx-sm bx-flashing'></i> {{ session()->get('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
@@ -96,8 +94,13 @@
                                                         <input type="text" id="jabatan" name="jabatan" class="form-control" placeholder="Masukkan Jabatan" value="{{ $item->jabatan->jabatan }}" readonly />
                                                     </div>
                                                     <div class="col mb-2">
-                                                        <label for="email" class="form-label">Email</label>
-                                                        <input type="email" id="email" class="form-control" placeholder="Masukkan Email" name="email" value="{{ $item->email }}" readonly />
+                                                        <label for="jabatan" class="form-label">Jabatan</label>
+                                                        <select class="form-select" id="jabatan" name="jabatans_id" aria-label="Default select example" disabled>
+                                                            <option selected disabled>Silahkan Pilih Jabatan</option>
+                                                            @foreach ($jabatan as $value)
+                                                                <option value="{{ $value->id }}" @if ($item->jabatans_id == $value->id) selected @endif>{{ $value->jabatan }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>                                             
                                             </div>
@@ -131,7 +134,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <form action="{{ route('warga.destroy', $item->id) }}" method="POST">
+                                        <form action="{{ route('akun.destroy', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <div class="modal-footer">
