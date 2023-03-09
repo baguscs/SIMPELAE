@@ -44,34 +44,35 @@ class AparatController extends Controller
             'wilayah_rts_id' => 'unique:aparats',
         ]);
 
-        if ($request->jabatans_id == 1) {
-            $checkJabatan = Aparat::where('jabatans_id', 1)->count();
-            if ($checkJabatan > 0) {
-                return redirect()->back()->with("error", "Jabatan sudah terisi");
+        $checkAccount = User::where('wargas_id', $request->wargas_id)->count();
+
+        if ($checkAccount > 0) {
+            if ($request->jabatans_id == 1) {
+                $checkJabatan = Aparat::where('jabatans_id', 1)->count();
+                if ($checkJabatan > 0) {
+                    return redirect()->back()->with("error", "Jabatan sudah terisi");
+                }
             }
+
+            $execute = Aparat::create($request->all());
+
+            $updateWarga = Warga::find($request->wargas_id);
+
+            $updateWarga->aparat = 1;
+            $updateWarga->save();
+
+            $updateAkun = User::where('wargas_id', $request->wargas_id)->firstOrFail();
+
+            $updateAkun->aparats_id = $execute->id;
+            $updateAkun->jabatans_id = $request->jabatans_id;
+            $updateAkun->save();
+
+
+            return redirect()->route('aparat.index')->with("message", "Berhasil Menambah Aparat");
         }
-
-        $execute = Aparat::create($request->all());
-        // $newAparat = new Aparat;
-
-        // $newAparat->wilayah_rts_id = $request->wilayah_rts_id;
-        // $newAparat->jabatans_id = $request->jabatans_id;
-        // $newAparat->wargas_id = $request->wargas_id;
-
-        // $newAparat->save();
-
-        $updateWarga = Warga::find($request->wargas_id);
-
-        $updateWarga->aparat = 1;
-        $updateWarga->save();
-
-        $updateAkun = User::where('wargas_id', $request->wargas_id)->firstOrFail();
-
-        $updateAkun->aparats_id = $execute->id;
-        $updateAkun->save();
-
-
-        return redirect()->route('aparat.index')->with("message", "Berhasil Menambah Aparat");
+        else{
+            return redirect()->back()->with("error", "Akun Belum Terdaftar");
+        }
     }
 
     /**
@@ -124,6 +125,10 @@ class AparatController extends Controller
 
         $aparat->update($request->all());
 
+        $updateAccount = User::where('wargas_id', $request->wargas_id)->firstOrFail();
+        $updateAccount->jabatans_id = $request->jabatans_id;
+        $updateAccount->save();
+
         return redirect()->route('aparat.index')->with("message", "Berhasil Mengupdate Aparat ". $getNameWarga->nama_warga);
     }
 
@@ -132,13 +137,19 @@ class AparatController extends Controller
      */
     public function destroy(Aparat $aparat)
     {
-        // dd($aparat->wargas_id);
+        $updateUser = User::where('wargas_id', $aparat->wargas_id)->firstOrFail();
+        $updateUser->jabatans_id = 3;
+        $updateUser->aparats_id = null;
+        $updateUser->save();
+
         $updateStatusAparat = Warga::find($aparat->wargas_id);
 
         $updateStatusAparat->aparat = 0;
         $updateStatusAparat->save();
 
         $getNameWarga = $updateStatusAparat->nama_warga;
+
+        
 
         $aparat->delete();
         return redirect()->back()->with("message", "Berhasil Menghapus Aparat ". $getNameWarga);

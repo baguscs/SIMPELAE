@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('aparats', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('wilayah_rts_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignId('jabatans_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('wargas_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('wilayah_rts_id')->nullable()->constrained();
+            $table->foreignId('jabatans_id')->constrained();
+            $table->foreignId('wargas_id')->constrained();
             $table->timestamps();
         });
     }

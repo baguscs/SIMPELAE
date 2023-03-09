@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('pengajuans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('wargas_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('jenis_surats_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('wargas_id')->constrained();
+            $table->foreignId('jenis_surats_id')->constrained();
             $table->string('nama_pengaju');
             $table->string('nik_pengaju');
             $table->enum('jenis_kelamin_pengaju', ['Laki-Laki', 'Perempuan']);

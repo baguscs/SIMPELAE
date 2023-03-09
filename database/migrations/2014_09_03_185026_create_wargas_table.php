@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('wargas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('wilayah_rts_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('wilayah_rts_id')->constrained();
             $table->bigInteger('nik')->unique();
             $table->bigInteger('no_kk')->unique();
             $table->string('nama_warga');
