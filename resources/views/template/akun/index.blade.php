@@ -116,7 +116,7 @@
 
                             {{-- modal hapus --}}
                             <div class="modal fade" id="smallModal{{ $loop->iteration }}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-md" role="document">
+                                <div class="modal-dialog modal-dialog-scrollable modal-md" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel2">Hapus Data Akun {{ $item->warga->nama_warga }}</h5>
