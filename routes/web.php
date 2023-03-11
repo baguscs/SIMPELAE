@@ -47,4 +47,8 @@ Route::middleware([
 
     //akun
     Route::resource('/akun', AkunController::class);
+    Route::get('cek-email', function ()
+    {
+       return view('template.akun.send-email');
+    });
 });

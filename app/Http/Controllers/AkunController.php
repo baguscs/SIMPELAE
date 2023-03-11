@@ -6,9 +6,11 @@ use App\Models\Warga;
 use App\Models\Wilayah_rt;
 use App\Models\User;
 use App\Models\Jabatan;
+use App\Mail\RegisterAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AkunController extends Controller
 {
@@ -60,6 +62,21 @@ class AkunController extends Controller
 
         $updateWarga->status_akun = "1";
         $updateWarga->save();
+
+        // prepare data
+        $mailData = [
+            'name' => $updateWarga->nama_warga,
+            'email' => $request->email,
+            'password' => $passwordAccount
+        ];
+
+        // send email
+        Mail::to($request->email)->send(new RegisterAccount($mailData));
+
+        // // check status send
+        // if (Mail::failures()) {
+        //     return redirect()->back()->with('error', 'E-Mail anda tidak terdaftar di Google');
+        // }
 
 
         return redirect()->route('akun.index')->with("message", "Berhasil Menambah Akun User");
