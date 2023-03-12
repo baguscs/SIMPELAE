@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\AparatController;
 use App\Http\Controllers\AkunController;
+use App\Http\Controllers\PengajuanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +48,7 @@ Route::middleware([
 
     //akun
     Route::resource('/akun', AkunController::class);
-    Route::get('cek-email', function ()
-    {
-       return view('template.akun.send-email');
-    });
+
+    // pengajuan
+    Route::resource('/pengajuan', PengajuanController::class);
 });

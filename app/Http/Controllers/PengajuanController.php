@@ -12,7 +12,10 @@ class PengajuanController extends Controller
      */
     public function index()
     {
-        //
+        $titlePage = "Data Pengajuan";
+        $data = Pengajuan::all();
+
+        return view('template.pengajuan.index', compact('titlePage', 'data'));
     }
 
     /**

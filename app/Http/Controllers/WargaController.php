@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Warga;
 use App\Models\Wilayah_rt;
+use App\Models\User;
+use App\Mail\RegisterAccount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class WargaController extends Controller
 {
@@ -34,6 +39,8 @@ class WargaController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+        $makeAccount = False;
         $request->validate([
             'wilayah_rts_id' => 'required',
             'nik' => 'required|min:16|max:16|unique:wargas',
@@ -49,7 +56,39 @@ class WargaController extends Controller
             'no_telp' => 'required',
         ]);
 
+        if ($request->email != "") {
+            $request->validate([
+                'email' => 'required|unique:users|email:rfc,dns',
+            ]);
+            $makeAccount = True;
+        }
+
         Warga::create($request->all());
+
+        if ($makeAccount == True) {
+            $findIdWarga = Warga::where('nik', $request->nik)->firstOrFail();
+
+            $password = Str::random(5);
+            
+            $newAccount = new User;
+
+            $newAccount->wargas_id = $findIdWarga->id;
+            $newAccount->jabatans_id = 3;
+            $newAccount->email = $request->email;
+            $newAccount->password = Hash::make($password);
+
+            $newAccount->save();
+
+            // prepare data
+            $mailData = [
+                'name' => $findIdWarga->nama_warga,
+                'email' => $request->email,
+                'password' => $password
+            ];
+
+            // send email
+            Mail::to($request->email)->send(new RegisterAccount($mailData));
+        }
 
         return redirect()->route('warga.index')->with("message", "Berhasil Menambah Data Warga ". $request->nama_warga);
     }

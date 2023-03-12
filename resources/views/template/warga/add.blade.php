@@ -103,12 +103,52 @@
                         <label for="kewarganegaraan" class="form-label">Kewarganegaraan</label>
                         <input type="text" id="kewarganegaraan" class="form-control" placeholder="Masukkan Kewarganegaraan" name="kewarganegaraan" value="{{ old('kewarganegaraan') }}" required />
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col mt-2">
+                        <label for="" class="form-label">Apakah data ini ingin ditambahkan ke akun warga?</label>
+                        <div class="col-md">
+                            <div class="form-check form-check-inline mt-3">
+                                <input
+                                class="form-check-input"
+                                type="radio"
+                                name="make-account"
+                                id="inlineRadio1"
+                                value="yes"
+                                required
+                                @if (old('make-account') == 'yes')
+                                    checked
+                                @endif
+                                />
+                                <label class="form-check-label" for="inlineRadio1">Ya</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input
+                                class="form-check-input"
+                                type="radio"
+                                name="make-account"
+                                id="inlineRadio2"
+                                value="no"
+                                required
+                                @if (old('make-account') == 'no')
+                                    checked
+                                @endif
+                                />
+                                <label class="form-check-label" for="inlineRadio2">Tidak</label>
+                            </div>
+                        </div>
+                        <input type="text" name="status_akun" value="0" class="status-akun" hidden>
+                    </div>
+                    <div class="col form-email" hidden>
+                        <label for="email" class="form-label">E-Mail</label>
+                        <input type="email" id="email" class="form-control input-email" placeholder="Masukkan Email" name="email" value="{{ old('email') }}"/>
+                    </div>
                 </div>  
-                <div class="mt-3">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                <div class="mt-4">
+                    <a type="button" href="{{ route('warga.index') }}" class="btn btn-outline-secondary">
                         Batal
-                    </button>
+                    </a>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>
@@ -116,4 +156,21 @@
 @endsection
 @push('titlePage')
     {{ $titlePage }}
+@endpush
+@push('js')
+    <script>
+        $(document).ready(function () {
+            $('.form-check-input').on("change", function () {
+                if ($(this).val() == "yes") {
+                    $('.form-email').attr('hidden', false);
+                    $('.input-email').attr('required', true);
+                    $('.status-akun').attr('value', '1');
+                } else {
+                    $('.form-email').attr('hidden', true);
+                    $('.input-email').attr('required', false);
+                    $('.status-akun').attr('value', '0');
+                }
+            })
+        })
+    </script>
 @endpush

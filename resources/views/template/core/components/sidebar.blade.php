@@ -135,7 +135,7 @@
         <!-- Components -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Pelayanan</span></li>
         <!-- User interface -->
-        <li class="menu-item">
+        <li class="menu-item {{ request()->routeIs('pengajuan.index') || request()->routeIs('pengajuan.create') ? 'active open' : '' }}">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="User interface">Pengajuan</div>
@@ -151,8 +151,8 @@
                         <div data-i18n="Alerts">Validasi Pengajuan</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="ui-badges.html" class="menu-link">
+                <li class="menu-item {{ request()->routeIs('pengajuan.index') ? 'active' : '' }}">
+                    <a href="{{ route('pengajuan.index') }}" class="menu-link">
                         <div data-i18n="Badges">Lihat Pengajuan</div>
                     </a>
                 </li>
