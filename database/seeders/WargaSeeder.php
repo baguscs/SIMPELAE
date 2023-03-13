@@ -22,13 +22,13 @@ class WargaSeeder extends Seeder
             'no_kk' => $faker->unique()->numberBetween(1111111111111111, 9999999999999999),
             'nama_warga' => 'Admin',
             'tempat_lahir' => $faker->city,
-            'tanggal_lahir' => $faker->dateTime,
+            'tanggal_lahir' => $faker->date,
             'jenis_kelamin' => "Laki-Laki",
             'agama' => 'Islam',
             'alamat' => $faker->streetAddress,
             'pekerjaan' => $faker->jobTitle,
             'kewarganegaraan' => 'Indonesia',
-            'no_telp' => $faker->phoneNumber,
+            'no_telp' => $faker->numberBetween(111111111111, 999999999999),
             'status_akun' => 1,
         ]);
 
@@ -41,13 +41,13 @@ class WargaSeeder extends Seeder
                 'no_kk' => $faker->unique()->numberBetween(1111111111111111, 9999999999999999),
                 'nama_warga' => $faker->name,
                 'tempat_lahir' => $faker->city,
-                'tanggal_lahir' => $faker->dateTime,
+                'tanggal_lahir' => $faker->date,
                 'jenis_kelamin' => "Laki-Laki",
                 'agama' => 'Islam',
                 'alamat' => $faker->streetAddress,
                 'pekerjaan' => $faker->jobTitle,
                 'kewarganegaraan' => 'Indonesia',
-                'no_telp' => $faker->phoneNumber,
+                'no_telp' => $faker->numberBetween(111111111111, 999999999999),
             ]);
         });
     }

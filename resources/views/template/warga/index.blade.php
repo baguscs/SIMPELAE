@@ -113,7 +113,7 @@
                                                         <label for="gender" class="form-label">Jenis Kelamin</label>
                                                         <select class="form-select" id="gender" name="jenis_kelamin" aria-label="Default select example" required>
                                                             <option selected disabled>Silahkan Pilih Jenis Kelamin</option>
-                                                            <option value="Laki_Laki" @if ($item->jenis_kelamin == "Laki_Laki") selected @endif>Laki-Laki</option>
+                                                            <option value="Laki_Laki" @if ($item->jenis_kelamin == "Laki-Laki") selected @endif>Laki-Laki</option>
                                                             <option value="Perempuan" @if ($item->jenis_kelamin == "Perempuan") selected @endif>Perempuan</option>
                                                         </select>
                                                     </div>
