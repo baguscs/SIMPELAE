@@ -34,25 +34,31 @@
       rel="stylesheet"
     />
 
-    <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
-
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/theme-default.css') }}" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
-
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
+    {{-- assets css --}}
+    @vite([
+      "public/assets/vendor/fonts/boxicons.css",
+      "public/assets/vendor/css/core.css",
+      "public/assets/vendor/css/theme-default.css",
+      "public/assets/css/demo.css",
+      "public/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css",
+      "public/assets/vendor/libs/apex-charts/apex-charts.css",
+      // "public/assets/vendor/js/helpers.js",
+      // "public/assets/js/config.js",
+      "public/assets/vendor/libs/jquery/jquery.js",
+      "public/assets/vendor/libs/popper/popper.js",
+      "public/assets/vendor/js/bootstrap.js",
+      "public/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js",
+      "public/assets/vendor/js/menu.js",
+      "public/assets/js/dashboards-analytics.js",
+    ])
 
     <!-- Page CSS -->
     @stack('css')
-
+    
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/js/config.js') }}"></script>
+    
   </head>
 
   <body>
@@ -222,14 +228,6 @@
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
-
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
-    <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
     <!-- endbuild -->

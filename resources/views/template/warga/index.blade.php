@@ -105,7 +105,7 @@
                                                     </div>
                                                     <div class="col mb-2">
                                                         <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                                                        <input type="date" id="tanggal_lahir" class="form-control" placeholder="Masukkan Nomor Kartu Keluarga" name="tanggal_lahir" value="{{ $item->tanggal_lahir }}" required />
+                                                        <input type="date" id="tanggal_lahir" class="form-control" name="tanggal_lahir" value="{{ $item->tanggal_lahir }}" required />
                                                     </div>
                                                 </div>
                                                 <div class="row g-2">
